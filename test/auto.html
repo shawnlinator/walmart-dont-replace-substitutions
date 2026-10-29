@@ -1,0 +1,13 @@
+﻿<!doctype html><meta charset="utf-8"><title>auto</title>
+<iframe id="f" src="mock.html" style="width:800px;height:600px"></iframe>
+<script>
+document.getElementById('f').onload = async () => {
+  const d = document.getElementById('f').contentDocument;
+  await new Promise(r => setTimeout(r, 500));
+  d.querySelector('#wdr-panel button').click();
+  await new Promise(r => setTimeout(r, 25000));
+  const radios = [...d.querySelectorAll('input[type=radio]')].filter(r => /^Don't replace/.test(r.getAttribute('aria-label')));
+  document.title = 'RESULT dont=' + radios.length + ' checked=' + radios.filter(r => r.checked).length +
+    ' status=' + d.querySelector('#wdr-panel span').textContent + ' ordertitle=' + d.title;
+};
+</script>

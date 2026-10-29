@@ -1,0 +1,36 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Mock Walmart substitutions sidebar</title>
+<link rel="stylesheet" href="../content.css">
+<style>.item{border:1px solid #ccc;margin:8px;padding:8px}</style>
+<button id="place-order" onclick="document.title='ORDER PLACED'">Place order</button>
+<div role="dialog">
+  <h2>Pick substitutions, just in case</h2>
+  <button aria-label="Close dialog">x</button>
+  <div id="list"></div>
+</div>
+<script>
+// Mimics the real sidebar: collapsed items show an "Edit substitution preference"
+// header; expanding one renders a "Best Match" radio and a "Don't replace" radio.
+const names = Array.from({length: 12}, (_, i) => `Mock Item Number ${i + 1} 16 oz`);
+const list = document.getElementById('list');
+names.forEach((name, i) => {
+  const item = document.createElement('div');
+  item.className = 'item';
+  item.innerHTML = `<div>${name}</div>`;
+  const header = document.createElement('button');
+  header.setAttribute('aria-label', `If unavailable, replace with: Best match Edit substitution preference for ${name}`);
+  header.textContent = 'If unavailable, replace with: Best match';
+  header.onclick = () => {
+    setTimeout(() => {
+      header.remove();
+      item.insertAdjacentHTML('beforeend',
+        `<label><input type="radio" name="r${i}" checked aria-label="Replace with:"> Best Match</label>
+         <label><input type="radio" name="r${i}" aria-label="Don't replace for ${name}"> Don't replace</label>`);
+    }, 300);
+  };
+  item.append(header);
+  list.append(item);
+});
+</script>
+<script src="../content.js"></script>

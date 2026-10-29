@@ -1,0 +1,24 @@
+#wdr-panel {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 2147483647;
+  display: none;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  background: #fff;
+  border: 1px solid #0071dc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  font: 14px sans-serif;
+}
+#wdr-panel button {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 16px;
+  background: #0071dc;
+  color: #fff;
+  cursor: pointer;
+}
+#wdr-panel button#wdr-stop { background: #666; }
